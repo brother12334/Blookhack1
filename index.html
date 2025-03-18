@@ -599,22 +599,25 @@ checkbox[checked]::before {
 </head>
 
 <body>
-<!-- Credit for this goes to jacskon -->
-    <div class="mainBody" style="z-index:0;background-color: rgb(9, 148, 65);overflow: hidden;">
+    <!-- Credit for this goes to jacskon -->
+    <div class="mainBody">
         <div class="_checkers_l90pt_12"></div>
-        <div class="chat" style="top:350;left:200;display:none;">
+
+        <!-- Chat Container -->
+        <div class="chat">
             <div class="chatcontainer">
                 <div class="chatmsg"></div>
             </div>
-            <div class="chatinpcontainer"><input id="chat" placeholder="Type a message..."></div>
-            <div class="dragcontainer" style="background-color: #091794;font-size: 20px;position: absolute;border-radius: 10px;font-weight: bold;">
+            <div class="chatinpcontainer">
+                <input id="chat" placeholder="Type a message...">
+            </div>
+            <div class="dragcontainer">
                 <div id="drag">Drag</div>
             </div>
         </div>
-        <!--<div class="normtext" style="background-color: white; color: red;">Temporary working version <a href="https://bb.doyle31.com/">Here</a></div>-->
+
+        <!-- Code Input Container -->
         <div class="codecontainer" id="cc">
-            <!--<div class="text" id="globalmsg">Blooket Bot is currently down, join the discord to find out when it might be back
-                up</div>-->
             <div class="normtext">Enter code:</div>
             <div class="idInputContainer">
                 <input id="gcode" class="idInput" placeholder="Game ID">
@@ -625,31 +628,73 @@ checkbox[checked]::before {
             <div class="joinButton" onclick="join();" role="button">
                 <div class="btext">Join</div>
             </div>
-            <!--<text class="normtext">*the name and id for the bots is the normal input boxes you would use*</text>!-->
-            <!--<text class="normtext">credit to CatHead for part of the bots</text>!-->
-            <text class="normtext" style="display:none;" id="ostatus"></text>
-            <text class="normtext">Incognito Mode:</text>
-            <checkbox id="icogmode" checked="true"></checkbox><br>
-            <text class="normtext">Bypass Filter:</text>
-            <checkbox id="bcf"></checkbox><br>
-            <text class="normtext">First Place Switch:</text>
-            <checkbox id="fpswitch" checked="true"></checkbox><br>
-            <text class="normtext">*for first place switch to work your amount must not be a number!</text>
-        </div>
-        <div id="ctrlpanel"></div>
-        <div style="margin-left:5px">
-        <div class="normtext" id="status">Status: Loading...</div>
-        <div class="normtext"><a href="https://discord.gg/8A6J234n7v" target="_blank">Join the discord server!</a></div>
-        <div class="normtext"><a href="credits.html" target="_blank">Credits!</a><!-- and doyle_31--></div>
-        
-        <div class="discordbuttonrow">
-        <div class="discordButton"><a onclick="discordChatTest()">Discord Chat</a></div>
-        <h3>&lt;-- Talk with other blooket bot users on the site</h3>
-        </div>
-      </div>
-        <div class="errorBar" id="error" style="transform: translateY(0%);"></div>
 
+            <!-- Status and Options -->
+            <text class="normtext" style="display:none;" id="ostatus"></text>
+            <div class="normtext">Incognito Mode:</div>
+            <input type="checkbox" id="icogmode" checked><br>
+            <div class="normtext">Bypass Filter:</div>
+            <input type="checkbox" id="bcf"><br>
+            <div class="normtext">First Place Switch:</div>
+            <input type="checkbox" id="fpswitch" checked><br>
+            <div class="normtext">*For first place switch to work, your amount must not be a number!</div>
+        </div>
+
+        <!-- Control Panel -->
+        <div id="ctrlpanel"></div>
+
+        <!-- Status and Links -->
+        <div style="margin-left:5px">
+            <div class="normtext" id="status">Status: Loading...</div>
+            <div class="normtext">
+                <a href="https://discord.gg/8A6J234n7v" target="_blank">Join the discord server!</a>
+            </div>
+            <div class="normtext">
+                <a href="credits.html" target="_blank">Credits!</a>
+            </div>
+
+            <!-- Discord Chat -->
+            <div class="discordbuttonrow">
+                <div class="discordButton">
+                    <a onclick="discordChatTest()">Discord Chat</a>
+                </div>
+                <h3>&lt;-- Talk with other Blooket bot users on the site</h3>
+            </div>
+        </div>
+
+        <!-- Error Bar -->
+        <div class="errorBar" id="error"></div>
     </div>
+
+    <!-- Load Scripts -->
+    <script src="script.js"></script>
+    <script src="../Blookhack1/lunicode.js"></script>
+
+    <script>
+        // Join function using globally exposed joinGame
+        function join() {
+            var gameCode = document.getElementById("gcode").value;
+            var playerName = document.getElementById("gname").value;
+            var incognitoMode = document.getElementById("icogmode").checked;
+            if (window.joinGame) {
+                joinGame(gameCode, playerName, incognitoMode);
+            } else {
+                console.error("joinGame is not defined");
+            }
+        }
+
+        // Error bar display function
+        function errorBar(error) {
+            var e = document.getElementById("error");
+            e.innerText = error;
+            e.style.transform = "translateY(-100%)";
+            setTimeout(function() {
+                e.style.transform = "translateY(0%)";
+            }, 4000);
+        }
+    </script>
+</body>
+
     <script type="module">
         //copied from google cause i'm lazy
         import {
