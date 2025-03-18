@@ -683,26 +683,25 @@ checkbox[checked]::before {
         if (urlcode) {
             document.querySelector("#gcode").value = urlcode;
         }
-    </script>
-    <script src="../Blookhack1/lunicode.js"></script><!---not mine just check the source you'll see its author-->
-    <script>
-        function join() {
-            var cin = document.getElementById("gcode");
-            var name = document.getElementById("gname");
-            joinGame(cin.value, name.value, document.getElementById("icogmode").getAttribute("checked") ? true : false);
-        }
+  <script src="script.js"></script>
+<script src="../Blookhack1/lunicode.js"></script>
 
-        function errorBar(error) {
-            var e = document.getElementById("error");
-            e.innerText = error;
-            e.style.transform = "translateY(-100%)";
-            setTimeout(function() {
-                e.style.transform = "translateY(0%)";
-            }, 4000);
-        }
-    </script>
-    <script src="script.js"></script>
-</body>
+<script>
+    function join() {
+        var cin = document.getElementById("gcode");
+        var name = document.getElementById("gname");
+        joinGame(cin.value, name.value, document.getElementById("icogmode").getAttribute("checked") ? true : false);
+    }
+
+    function errorBar(error) {
+        var e = document.getElementById("error");
+        e.innerText = error;
+        e.style.transform = "translateY(-100%)";
+        setTimeout(function() {
+            e.style.transform = "translateY(0%)";
+        }, 4000);
+    }
+</script>
 
 
 <!-- Mirrored from blooketbot.glitch.me/ by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 13 Mar 2025 23:40:23 GMT -->
