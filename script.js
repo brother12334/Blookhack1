@@ -2581,6 +2581,7 @@ function system_message(message, code) {
 
   chat.appendChild(system_message_container);
 
-  window.joinGame = joinGame;
-
 }
+
+ window.joinGame = joinGame;
+
